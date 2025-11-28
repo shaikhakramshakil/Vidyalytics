@@ -56,7 +56,7 @@ const gradientDefs = (
 
 export function EnrollmentTrendChart() {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[280px] w-full">
+    <ChartContainer config={chartConfig} className="min-h-[200px] sm:min-h-[280px] w-full">
       <AreaChart
         accessibilityLayer
         data={enrollmentData}
@@ -212,7 +212,7 @@ const budgetChartConfig: ChartConfig = {
 
 export function BudgetChart() {
     return (
-        <ChartContainer config={budgetChartConfig} className="min-h-[180px] w-full">
+        <ChartContainer config={budgetChartConfig} className="min-h-[140px] sm:min-h-[180px] w-full">
             <BarChart accessibilityLayer data={budgetChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
                 <YAxis
                     dataKey="name"
@@ -256,7 +256,7 @@ const subjectPerformanceData = academicData.testScores.map((score, index) => ({
 
 export function SubjectPerformanceChart() {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[220px] w-full">
+    <ChartContainer config={chartConfig} className="min-h-[180px] sm:min-h-[220px] w-full">
       <BarChart
         data={subjectPerformanceData}
         margin={{ top: 20, right: 20, left: 0, bottom: 10 }}
@@ -306,9 +306,9 @@ export function AttendanceGaugeChart() {
   const attendanceValue = attendanceData.dailyRate;
   const percentage = attendanceValue / 100;
   
-  // SVG arc calculations
-  const size = 180;
-  const strokeWidth = 14;
+  // SVG arc calculations - responsive size
+  const size = 160; // Slightly smaller for better mobile fit
+  const strokeWidth = 12;
   const radius = (size - strokeWidth) / 2;
   const cx = size / 2;
   const cy = size / 2;
@@ -319,8 +319,8 @@ export function AttendanceGaugeChart() {
   const emptyLength = circumference - filledLength;
   
   return (
-    <div className="flex flex-col items-center justify-center py-4">
-      <div className="relative">
+    <div className="flex flex-col items-center justify-center py-2 sm:py-4">
+      <div className="relative scale-75 sm:scale-100 origin-center">
         <svg width={size} height={size / 2 + 20} viewBox={`0 0 ${size} ${size / 2 + 20}`}>
           {/* Background arc */}
           <path
@@ -342,9 +342,9 @@ export function AttendanceGaugeChart() {
           />
         </svg>
         {/* Center text */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-6">
-          <span className="text-3xl font-semibold">{attendanceValue}%</span>
-          <span className="text-xs text-muted-foreground">Daily Rate</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-4 sm:pt-6">
+          <span className="text-2xl sm:text-3xl font-semibold">{attendanceValue}%</span>
+          <span className="text-[10px] sm:text-xs text-muted-foreground">Daily Rate</span>
         </div>
       </div>
     </div>
@@ -361,7 +361,7 @@ const gradeDistributionData = [
 
 export function GradeDistributionChart() {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+    <ChartContainer config={chartConfig} className="min-h-[160px] sm:min-h-[200px] w-full">
       <BarChart
         data={gradeDistributionData}
         margin={{ top: 20, right: 20, left: 0, bottom: 10 }}

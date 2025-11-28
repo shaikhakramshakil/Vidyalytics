@@ -63,38 +63,38 @@ export function ModernStatsCard({
   return (
     <div
       className={cn(
-        'rounded-lg border bg-card p-5 shadow-soft hover-card',
+        'rounded-lg border bg-card p-3 sm:p-5 shadow-soft hover-card',
         className
       )}
     >
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-2 sm:mb-4">
         <div className={cn(
-          'flex items-center justify-center w-10 h-10 rounded-lg',
+          'flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg',
           iconColors[iconColor]
         )}>
-          <Icon className="w-5 h-5" />
+          <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
         
         {trend && (
           <div className={cn(
-            'flex items-center gap-1 text-xs font-medium',
+            'flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs font-medium',
             trend.isPositive 
               ? 'text-emerald-600 dark:text-emerald-400'
               : trend.value === 0 
                 ? 'text-muted-foreground'
                 : 'text-rose-600 dark:text-rose-400'
           )}>
-            <TrendIcon className="w-3.5 h-3.5" />
+            <TrendIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>{Math.abs(trend.value).toFixed(1)}%</span>
           </div>
         )}
       </div>
       
-      <div className="space-y-1">
-        <p className="text-sm text-muted-foreground">{title}</p>
-        <p className="text-2xl font-semibold tracking-tight">{value}</p>
+      <div className="space-y-0.5 sm:space-y-1">
+        <p className="text-xs sm:text-sm text-muted-foreground truncate">{title}</p>
+        <p className="text-lg sm:text-2xl font-semibold tracking-tight">{value}</p>
         {subtitle && (
-          <p className="text-xs text-muted-foreground">{subtitle}</p>
+          <p className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">{subtitle}</p>
         )}
       </div>
     </div>
@@ -127,12 +127,12 @@ export function MiniProgressCard({
   };
   
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between text-sm">
+    <div className="space-y-1.5 sm:space-y-2">
+      <div className="flex items-center justify-between text-xs sm:text-sm">
         <span className="text-muted-foreground">{title}</span>
         <span className="font-medium">{value}{suffix}</span>
       </div>
-      <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+      <div className="h-1 sm:h-1.5 rounded-full bg-muted overflow-hidden">
         <div
           className={cn(
             'h-full rounded-full transition-all duration-500',
@@ -156,19 +156,19 @@ export function QuickStat({ label, value, change, iconName }: QuickStatProps) {
   const Icon = iconName ? iconMap[iconName] : null;
   
   return (
-    <div className="flex items-center gap-3 p-4 rounded-lg border bg-card shadow-soft">
+    <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border bg-card shadow-soft">
       {Icon && (
-        <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary">
-          <Icon className="w-4 h-4" />
+        <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/10 text-primary">
+          <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </div>
       )}
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-muted-foreground truncate">{label}</p>
-        <div className="flex items-baseline gap-2">
-          <p className="text-lg font-semibold">{value}</p>
+        <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{label}</p>
+        <div className="flex items-baseline gap-1 sm:gap-2">
+          <p className="text-base sm:text-lg font-semibold">{value}</p>
           {change !== undefined && (
             <span className={cn(
-              'text-xs font-medium',
+              'text-[10px] sm:text-xs font-medium',
               change >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
             )}>
               {change >= 0 ? '+' : ''}{change}%

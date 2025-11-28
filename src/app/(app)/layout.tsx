@@ -44,14 +44,15 @@ export default function AppLayout({
   return (
     <SidebarProvider>
       {/* Prototype Warning Banner */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-100 border-b border-amber-300 text-amber-800 text-center py-1.5 px-4 text-sm font-medium flex items-center justify-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-amber-100 border-b border-amber-300 text-amber-800 text-center py-1.5 px-2 sm:px-4 text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
         </svg>
-        <span>This is a prototype for demonstration purposes only — not an actual product</span>
+        <span className="hidden sm:inline">This is a prototype for demonstration purposes only — not an actual product</span>
+        <span className="sm:hidden">Prototype — Demo Only</span>
       </div>
       
-      <Sidebar className="border-r border-border mt-9">
+      <Sidebar className="border-r border-border mt-8 sm:mt-9">
         <SidebarHeader className="p-5 pb-4">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground">
@@ -134,27 +135,30 @@ export default function AppLayout({
         </SidebarFooter>
       </Sidebar>
       
-      <SidebarInset className="flex flex-col mt-9">
-        <header className="flex h-14 items-center gap-4 border-b bg-background px-6 sticky top-9 z-30">
-          <SidebarTrigger className="md:hidden" />
+      <SidebarInset className="flex flex-col mt-8 sm:mt-9">
+        <header className="flex h-12 sm:h-14 items-center gap-2 sm:gap-4 border-b bg-background px-3 sm:px-6 sticky top-8 sm:top-9 z-30">
+          <SidebarTrigger />
           
           <div className="flex-1" />
           
-          <div className="flex items-center gap-2">
-            {/* Search */}
-            <div className="relative hidden md:block">
+          <div className="flex items-center gap-1 sm:gap-2">
+            {/* Search - Mobile icon only, Desktop full input */}
+            <Button variant="ghost" size="icon" className="h-8 w-8 sm:hidden">
+              <Search className="h-4 w-4" />
+            </Button>
+            <div className="relative hidden sm:block">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search..."
-                className="pl-8 w-[200px] lg:w-[280px] h-9"
+                className="pl-8 w-[160px] md:w-[200px] lg:w-[280px] h-9"
               />
             </div>
             
             {/* Notifications */}
-            <Button variant="ghost" size="icon" className="relative h-9 w-9">
+            <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-9 sm:w-9">
               <Bell className="h-4 w-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary" />
+              <span className="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 w-2 h-2 rounded-full bg-primary" />
             </Button>
           </div>
         </header>
